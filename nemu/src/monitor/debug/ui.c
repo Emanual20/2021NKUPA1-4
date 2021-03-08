@@ -39,7 +39,7 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 
 // Commands to implement in pa1
-static int cmd_si(char *args){};
+static int cmd_si(char *args);
 static int cmd_info(char *args){};
 static int cmd_p(char *args){};
 static int cmd_x(char *args){};
@@ -87,6 +87,16 @@ static int cmd_help(char *args) {
     printf("Unknown command '%s'\n", arg);
   }
   return 0;
+}
+
+static int cmd_si(char *args){
+  char *arg = strtok(NULL, " ");
+  if(arg!=NULL){
+    cpu_exec(atoi(arg));
+  }
+  else{
+    cpu_exec(1);
+  }
 }
 
 void ui_mainloop(int is_batch_mode) {

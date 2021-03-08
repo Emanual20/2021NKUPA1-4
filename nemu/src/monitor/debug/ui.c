@@ -42,7 +42,7 @@ static int cmd_help(char *args);
 static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_p(char *args){};
-static int cmd_x(char *args){};
+static int cmd_x(char *args);
 static int cmd_w(char *args){};
 static int cmd_d(char *args){};
 
@@ -115,6 +115,28 @@ static int cmd_info(char *args){
   else{
     printf("undefined subcmd for info..\n");
   }
+  return 0;
+}
+
+static int cmd_x(char *args){
+  char *arg1 = strtok(NULL, " ");
+  if(arg1==NULL){
+    printf("u shall input the parameter N to specify the consecutive N..\n");
+    return 0;
+  }
+  int i_arg1 = atoi(arg1);
+  char *arg2 = strtok(NULL, " ");
+  /* TODO: now i just implement the function given accurate number, must fix it in 1-2 or 1-3*/
+  if(arg2==NULL){
+    printf("u shall input the parameter EXPR must generate from keyboard input..!\n");
+    return 0;
+  }
+  uint32_t addr_begin = strtoul(arg2,NULL,16);
+  for(int i=0;i<i_arg1;i++){
+    printf("0x%x ", vaddr_read(addr_begin,1));
+    addr_begin+=1;
+  }
+  printf("\n");
   return 0;
 }
 

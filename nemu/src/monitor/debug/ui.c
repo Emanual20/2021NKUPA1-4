@@ -109,11 +109,11 @@ static int cmd_info(char *args){
   
   if(strcmp(arg,"r")==0){
     for(int i=0;i<8;i++){
-      printf("%s:%d\n", reg_name(i,4), reg_l(i));
+      printf("%s:0x%x\n", reg_name(i,4), reg_l(i));
     }
   }
   else{
-    printf("undefined subcmd for info..");
+    printf("undefined subcmd for info..\n");
   }
   return 0;
 }

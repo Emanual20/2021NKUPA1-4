@@ -101,6 +101,11 @@ static int cmd_si(char *args){
 
 static int cmd_info(char *args){
   char *arg = strtok(NULL, " ");
+  if(arg==NULL){
+    printf("please input subcmd for info..!\n");
+    return -1;
+  }
+  
   if(strcmp(arg,"r")==0){
     for(int i=0;i<8;i++){
       printf("%s:%d\n", reg_name(i,4), reg_l(i));

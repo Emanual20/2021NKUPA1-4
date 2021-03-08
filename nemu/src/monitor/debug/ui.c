@@ -97,13 +97,14 @@ static int cmd_si(char *args){
   else{
     cpu_exec(1);
   }
+  return 0;
 }
 
 static int cmd_info(char *args){
   char *arg = strtok(NULL, " ");
   if(arg==NULL){
     printf("please input subcmd for info..!\n");
-    return -1;
+    return 0;
   }
   
   if(strcmp(arg,"r")==0){
@@ -114,6 +115,7 @@ static int cmd_info(char *args){
   else{
     printf("undefined subcmd for info..");
   }
+  return 0;
 }
 
 void ui_mainloop(int is_batch_mode) {

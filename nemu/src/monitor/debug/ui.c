@@ -39,12 +39,12 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 
 // Commands to implement in pa1
-static int cmd_si(char *args);
-static int cmd_info(char *args);
-static int cmd_p(char *args);
-static int cmd_x(char *args);
-static int cmd_w(char *args);
-static int cmd_d(char *args);
+static int cmd_si(char *args){};
+static int cmd_info(char *args){};
+static int cmd_p(char *args){};
+static int cmd_x(char *args){};
+static int cmd_w(char *args){};
+static int cmd_d(char *args){};
 
 static struct {
   char *name;

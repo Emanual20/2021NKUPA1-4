@@ -56,12 +56,12 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-  { "si [N]", "Let the program execute N instructions step by step", cmd_si },
-  { "info SUBCMD", "Print registers' status for r, checkpoint informations for w", cmd_info },
-  { "p EXPR", "Calculate the expression's value", cmd_p },
-  { "x N EXPR", "Scan the consecutive 4N bytes from Address EXPR", cmd_x },
-  { "w EXPR", "Set watchpoint i.e. pause the program until the EXPR's value changes", cmd_w },
-  { "d N", "Delete the watchpoint which number is N", cmd_q }
+  { "si", "Let the program execute N instructions step by step", cmd_si },
+  { "info", "Print registers' status for r, checkpoint informations for w", cmd_info },
+  { "p", "Calculate the expression's value", cmd_p },
+  { "x", "Scan the consecutive 4N bytes from Address EXPR", cmd_x },
+  { "w", "Set watchpoint i.e. pause the program until the EXPR's value changes", cmd_w },
+  { "d", "Delete the watchpoint which number is N", cmd_q }
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))

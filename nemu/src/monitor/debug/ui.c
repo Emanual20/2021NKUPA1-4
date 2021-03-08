@@ -38,6 +38,14 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+// Commands to implement in pa1
+static int cmd_si(char *args);
+static int cmd_info(char *args);
+static int cmd_p(char *args);
+static int cmd_x(char *args);
+static int cmd_w(char *args);
+static int cmd_d(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -48,7 +56,12 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-
+  { "si [N]", "Let the program execute N instructions step by step", cmd_si },
+  { "info SUBCMD", "Print registers' status for r, checkpoint informations for w", cmd_info },
+  { "p EXPR", "Calculate the expression's value", cmd_p },
+  { "x N EXPR", "Scan the consecutive 4N bytes from Address EXPR", cmd_x },
+  { "w EXPR", "Set watchpoint i.e. pause the program until the EXPR's value changes", cmd_w },
+  { "d N", "Delete the watchpoint which number is N", cmd_q }
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))

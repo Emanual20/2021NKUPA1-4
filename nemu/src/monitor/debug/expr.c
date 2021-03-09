@@ -74,6 +74,46 @@ typedef struct token {
 Token tokens[32];
 int nr_token;
 
+static uint32_t operator2priority(Token tk){
+  switch(tk.type){
+    case TK_GETVAL:
+    case TK_NOT:{
+      return 2;
+    }
+    case '*':
+    case '/':{
+      return 3;
+    }
+    case '+':
+    case '-':{
+      return 4;
+    }
+    case TK_EQ:
+    case TK_NEQ:{
+      return 7;
+    }
+    case TK_AND:{
+      return 8;
+    }
+    case TK_OR:{
+      return 10;
+    }
+    case TK_LOGAND:{
+      return 11;
+    }
+    case TK_LOGOR:{
+      return 12;
+    }
+    default:{
+      return 16;
+    }
+  }
+}
+
+static bool is_operator(Token tk){
+  return operator2priority(tk)<=15;
+}
+
 static bool make_token(char *e) {
   int position = 0;
   int i;
@@ -120,6 +160,11 @@ static bool make_token(char *e) {
       return false;
     }
   }
+  for(int i=0;i<nr_token;i++){
+    if(tokens[i].type=='*'&&(is_operator(tokens[i-1])||i==0)){
+      tokens[i].type = TK_GETVAL;
+    }
+  }
 
   return true;
 }
@@ -152,46 +197,6 @@ bool check_parentheses(int l, int r, bool *success){
   }
   *success=true;
   return false;
-}
-
-static uint32_t operator2priority(Token tk){
-  switch(tk.type){
-    case TK_GETVAL:
-    case TK_NOT:{
-      return 2;
-    }
-    case '*':
-    case '/':{
-      return 3;
-    }
-    case '+':
-    case '-':{
-      return 4;
-    }
-    case TK_EQ:
-    case TK_NEQ:{
-      return 7;
-    }
-    case TK_AND:{
-      return 8;
-    }
-    case TK_OR:{
-      return 10;
-    }
-    case TK_LOGAND:{
-      return 11;
-    }
-    case TK_LOGOR:{
-      return 12;
-    }
-    default:{
-      return 16;
-    }
-  }
-}
-
-static bool is_operator(Token tk){
-  return operator2priority(tk)<=15;
 }
 
 static int find_operator(int l, int r, bool *success){
@@ -259,7 +264,7 @@ static uint32_t eval(int l, int r, bool *success){
     int opIndex = find_operator(l,r,success);
     // printf("opIndex:%d\n",opIndex);
     uint32_t val1 = 0;
-    val1=eval(l,opIndex-1,success);
+    val1=eval(opIndex+1,r,success);
     if(tokens[opIndex].type==TK_NOT){
       if(*success){
         return !val1;
@@ -268,8 +273,11 @@ static uint32_t eval(int l, int r, bool *success){
         return 0;
       }
     }
+    else if(tokens[opIndex].type==TK_GETVAL){
+      return vaddr_read(val1,4);
+    }
     uint32_t val2 = 0;
-    val2 = eval(opIndex+1,r,success);
+    val2 = eval(l,opIndex-1,success);
     // printf("%d %d %d\n", val1, val2, *success);
     if(!*success){
       return 0;

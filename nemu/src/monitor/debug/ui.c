@@ -41,7 +41,7 @@ static int cmd_help(char *args);
 // Commands to implement in pa1
 static int cmd_si(char *args);
 static int cmd_info(char *args);
-static int cmd_p(char *args){};
+static int cmd_p(char *args);
 static int cmd_x(char *args);
 static int cmd_w(char *args){};
 static int cmd_d(char *args){};
@@ -137,6 +137,23 @@ static int cmd_x(char *args){
     addr_begin+=1;
   }
   printf("\n");
+  return 0;
+}
+
+static int cmd_p(char *args){
+  char *arg = strtok(NULL,"");
+  if(arg==NULL){
+    printf("please input the expression u wanna calculate..!\n");
+    return 0;
+  }
+  bool is_finish=false;
+  uint32_t ans = expr(arg,&is_finish);
+  if(!is_finish){
+    printf("please check your expression's format..!\n");
+  }
+  else{
+    printf("%d\n", ans);
+  }
   return 0;
 }
 

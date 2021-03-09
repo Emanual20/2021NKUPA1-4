@@ -245,6 +245,7 @@ static uint32_t eval(int l, int r, bool *success){
     return eval(l+1,r-1,success);
   }
   else{
+    printf("%d\n",*success);
     int opIndex = find_operator(l,r,success);
     // printf("opIndex:%d\n",opIndex);
     uint32_t val1 = 0;

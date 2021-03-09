@@ -146,7 +146,7 @@ static int cmd_p(char *args){
     printf("please input the expression u wanna calculate..!\n");
     return 0;
   }
-  bool is_finish=false;
+  bool is_finish=true;
   uint32_t ans = expr(arg,&is_finish);
   if(!is_finish){
     printf("please check your expression's format..!\n");

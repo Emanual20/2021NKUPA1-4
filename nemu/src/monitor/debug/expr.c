@@ -148,8 +148,8 @@ bool check_parentheses(int l, int r, bool *success){
       return true;
     }
   }
-  *success=false;
-  return *success;
+  *success=true;
+  return false;
 }
 
 static uint32_t operator2priority(Token tk){

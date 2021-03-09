@@ -265,14 +265,14 @@ static uint32_t eval(int l, int r, bool *success){
       return 0;
     }
     switch(tokens[opIndex].type){
-      printf("%d %d\n", val1, val2);
+      // printf("%d %d\n", val1, val2);
       case '+':{
         return val1+val2;
       }
       case '-':{
         if(val1>val2) return val1-val2;
         else{
-          printf("cuz this is a unsigned number,so the result is wrong literally..!\n");
+          printf("cuz this is a unsigned number,so the result might be wrong literally..!\n");
           return val1-val2;
         }
       }
@@ -319,7 +319,7 @@ uint32_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  printf("before calc expr is_success:%d\n", *success);
-  printf("l:%d r:%d\n", 0, nr_token-1);
+  // printf("before calc expr is_success:%d\n", *success);
+  // printf("l:%d r:%d\n", 0, nr_token-1);
   return eval(0,nr_token-1,success);
 }

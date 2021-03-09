@@ -285,25 +285,25 @@ static uint32_t eval(int l, int r, bool *success){
     switch(tokens[opIndex].type){
       // printf("%d %d\n", val1, val2);
       case '+':{
-        return val1+val2;
+        return val2+val1;
       }
       case '-':{
-        if(val1>val2) return val1-val2;
+        if(val2>val1) return val2-val1;
         else{
           printf("cuz this is a unsigned number,so the result might be wrong literally..!\n");
-          return val1-val2;
+          return val2-val1;
         }
       }
       case '*':{
-        return val1*val2;
+        return val2*val1;
       }
       case '/':{
-        if(val2==0){
+        if(val1==0){
           printf("divide 0 error..!\n");
           *success=false;
           return 0;
         }
-        return val1/val2;
+        return val2/val1;
       }
       case TK_LOGAND:{
         return val1&&val2;

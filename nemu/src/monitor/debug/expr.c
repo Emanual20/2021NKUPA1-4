@@ -38,7 +38,7 @@ static struct rule {
   {"&", TK_AND},         // calc-and
   {"==", TK_EQ},         // equal
   {"!=", TK_NEQ},        // not-equal
-  {"\\$[eE][0-9a-fA-F]{2}", REG}, // registers
+  {"\$[eE][0-9a-fA-F]{2}", REG}, // registers
   {"0[xX][a-fA-F0-9]+", NUM_16}, // num with radix 16
   {"[0-9]|([1-9][0-9]*)", NUM_10}, // num with radix 10
   {"\\(", '('},          // l-parentheses

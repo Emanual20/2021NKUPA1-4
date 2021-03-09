@@ -202,7 +202,7 @@ static int find_operator(int l, int r, bool *success){
     if(tot_parentheses!=0) continue;
     if(!is_operator(tokens[i])) continue;
 
-    printf("now_index:%d\n",i);
+    // printf("now_index:%d\n",i);
 
     int now_power = operator2priority(tokens[i]);
     if(now_power>now_max_power){
@@ -236,7 +236,7 @@ static uint32_t eval(int l, int r, bool *success){
   }
   else{
     int opIndex = find_operator(l,r,success);
-    printf("opIndex:%d\n",opIndex);
+    // printf("opIndex:%d\n",opIndex);
     uint32_t val1 = 0;
     if(tokens[opIndex].type==TK_NOT){
       val1=eval(l,opIndex-1,success);
@@ -253,6 +253,7 @@ static uint32_t eval(int l, int r, bool *success){
       return 0;
     }
     switch(tokens[opIndex].type){
+      printf("%d %d\n", val1, val2);
       case '+':{
         return val1+val2;
       }

@@ -198,8 +198,9 @@ static int find_operator(int l, int r, bool *success){
       continue;
     }
 
-    if(tot_parentheses!=0 
-      && !is_operator(tokens[i])) continue;
+    /* NOTE: short circuit in C language!*/
+    if(tot_parentheses!=0) continue;
+    if(!is_operator(tokens[i])) continue;
 
     printf("now_index:%d\n",i);
 

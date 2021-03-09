@@ -260,6 +260,7 @@ static uint32_t eval(int l, int r, bool *success){
     }
     uint32_t val2 = 0;
     val2 = eval(opIndex+1,r,success);
+    printf("%d %d %d\n", val1, val2, *success);
     if(!*success){
       return 0;
     }

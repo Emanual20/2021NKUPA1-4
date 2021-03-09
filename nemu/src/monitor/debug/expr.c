@@ -244,6 +244,7 @@ static uint32_t eval(int l, int r, bool *success){
         return strtoul(tokens[l].str,NULL,0);
       }
       case REG:{
+        printf("REG_NAME:%s\n", tokens[l].str);
         if(strcmp(tokens[l].str,"eip")==0) return cpu.eip;
         for(int i=0;i<8;i++){
           if(strcmp(tokens[l].str,reg_name(i,4))==0) return reg_l(i);

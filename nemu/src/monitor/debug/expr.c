@@ -197,9 +197,11 @@ static int find_operator(int l, int r, bool *success){
       tot_parentheses-=1;
       continue;
     }
-    
+
     if(tot_parentheses!=0 
       && !is_operator(tokens[i])) continue;
+
+    printf("now_index:%d\n",i);
 
     int now_power = operator2priority(tokens[i]);
     if(now_power>now_max_power){

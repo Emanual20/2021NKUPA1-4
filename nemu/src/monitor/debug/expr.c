@@ -31,10 +31,10 @@ static struct rule {
   {"\\/", '/'},          // div
   {"\\+", '+'},          // plus
   {"\\-", '-'},          // minus
-  {"\\|", TK_OR},        // calc-or
-  {"&", TK_AND},         // calc-and
   {"\\|\\|", TK_LOGOR},      // log-or
   {"&&", TK_LOGAND},         // log-and
+  {"\\|", TK_OR},        // calc-or
+  {"&", TK_AND},         // calc-and
   {"==", TK_EQ},         // equal
   {"!=", TK_NEQ},        // not-equal
   {"[1-9][0-9]*", NUM_10}, // num with radix 10

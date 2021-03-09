@@ -139,6 +139,7 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
           case TK_NOTYPE: break;
+          case REG:
           case NUM_10:
           case NUM_16:{
             for(int i=0;i<substr_len;i++){

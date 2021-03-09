@@ -7,7 +7,8 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ
+  TK_NOTYPE = 256, 
+  TK_EQ, TK_NEQ, TK_AND, TK_OR, TK_NOT
 
   /* TODO: Add more token types */
 
@@ -22,9 +23,18 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
 
-  {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},         // plus
-  {"==", TK_EQ}         // equal
+  {" +", TK_NOTYPE},     // spaces
+  {"!", TK_NOT},         // log-not
+  {"\\*", '*'},          // multi
+  {"\\/", '/'},          // div
+  {"\\+", '+'},          // plus
+  {"\\-", '-'},          // minus
+  {"\\|\\|", TK_OR},      // log-or
+  {"&&", TK_AND},         // log-and
+  {"==", TK_EQ},         // equal
+  {"!=", TK_NEQ},        // not-equal
+  {"\\(", '('},          // l-parentheses
+  {"\\)", ')'},          // r-patentheses
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -95,6 +105,8 @@ static bool make_token(char *e) {
 
   return true;
 }
+
+
 
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {

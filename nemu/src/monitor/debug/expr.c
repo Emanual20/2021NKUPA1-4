@@ -213,7 +213,7 @@ static int find_operator(int l, int r, bool *success){
     // printf("now_index:%d\n",i);
 
     int now_power = operator2priority(tokens[i]);
-    if(now_power>now_max_power){
+    if(now_power>=now_max_power){
       now_max_power=now_power;
       now_max_index=i;
     }

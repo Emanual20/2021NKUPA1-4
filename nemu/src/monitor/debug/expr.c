@@ -247,7 +247,7 @@ static uint32_t eval(int l, int r, bool *success){
   else{
     // printf("%d\n",*success);
     int opIndex = find_operator(l,r,success);
-    // printf("opIndex:%d\n",opIndex);
+    printf("opIndex:%d\n",opIndex);
     uint32_t val1 = 0;
     if(tokens[opIndex].type==TK_NOT){
       val1=eval(l,opIndex-1,success);

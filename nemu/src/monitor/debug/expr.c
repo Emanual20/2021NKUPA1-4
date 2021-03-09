@@ -192,7 +192,7 @@ static bool is_operator(Token tk){
 }
 
 static int find_operator(int l, int r, bool *success){
-  printf("before find op, is_success:%d\n", *success);
+  // printf("before find op, is_success:%d\n", *success);
   int now_max_power = -1, now_max_index = -1;
   int tot_parentheses = 0;
   for(int i=l;i<=r;i++){
@@ -218,7 +218,7 @@ static int find_operator(int l, int r, bool *success){
       now_max_index=i;
     }
   }
-  printf("after find op, is_success:%d\n", *success);
+  // printf("after find op, is_success:%d\n", *success);
   return now_max_index;
 }
 
@@ -247,7 +247,7 @@ static uint32_t eval(int l, int r, bool *success){
   else{
     // printf("%d\n",*success);
     int opIndex = find_operator(l,r,success);
-    printf("opIndex:%d\n",opIndex);
+    // printf("opIndex:%d\n",opIndex);
     uint32_t val1 = 0;
     val1=eval(l,opIndex-1,success);
     if(tokens[opIndex].type==TK_NOT){
@@ -260,7 +260,7 @@ static uint32_t eval(int l, int r, bool *success){
     }
     uint32_t val2 = 0;
     val2 = eval(opIndex+1,r,success);
-    printf("%d %d %d\n", val1, val2, *success);
+    // printf("%d %d %d\n", val1, val2, *success);
     if(!*success){
       return 0;
     }

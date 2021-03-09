@@ -198,7 +198,7 @@ static int find_operator(int l, int r, bool *success){
       continue;
     }
     if(tot_parentheses!=0 
-      && is_operator(tokens[i])) continue;
+      && !is_operator(tokens[i])) continue;
 
     int now_power = operator2priority(tokens[i]);
     if(now_power>now_max_power){

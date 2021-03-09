@@ -10,7 +10,8 @@ enum {
   TK_NOTYPE = 256, 
   TK_OR, TK_AND,
   TK_EQ, TK_NEQ, TK_LOGAND, TK_LOGOR, TK_NOT,
-  NUM_10, NUM_16
+  NUM_10, NUM_16,
+  REG, TK_GETVAL
 
   /* TODO: Add more token types */
 
@@ -27,7 +28,7 @@ static struct rule {
 
   {" +", TK_NOTYPE},     // spaces
   {"!", TK_NOT},         // log-not
-  {"\\*", '*'},          // multi
+  {"\\*", '*'},          // multi/getval
   {"\\/", '/'},          // div
   {"\\+", '+'},          // plus
   {"\\-", '-'},          // minus
@@ -37,6 +38,7 @@ static struct rule {
   {"&", TK_AND},         // calc-and
   {"==", TK_EQ},         // equal
   {"!=", TK_NEQ},        // not-equal
+  {"\\$[eE][0-9a-fA-F]{2}", REG}, // registers
   {"[0-9]|([1-9][0-9])*", NUM_10}, // num with radix 10
   {"0[xX][a-fA-F0-9]+", NUM_16}, // num with radix 16
   {"\\(", '('},          // l-parentheses
@@ -154,6 +156,7 @@ bool check_parentheses(int l, int r, bool *success){
 
 static uint32_t operator2priority(Token tk){
   switch(tk.type){
+    case TK_GETVAL:
     case TK_NOT:{
       return 2;
     }
@@ -234,8 +237,15 @@ static uint32_t eval(int l, int r, bool *success){
       case NUM_16:{
         return strtoul(tokens[l].str,NULL,0);
       }
+      case REG:{
+        if(strcmp(tokens[l].str,"eip")==0) return cpu.eip;
+        for(int i=0;i<8;i++){
+          if(strcmp(tokens[l].str,reg_name(i,4))==0) return reg_l(i);
+        }
+        printf("please check ur register's name..!\n");
+      }
       default:{
-        /* TODO: fix further for regs..*/
+        *success=false;
         return 0;
       }
     }

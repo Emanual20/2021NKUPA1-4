@@ -180,6 +180,10 @@ static uint32_t operator2priority(Token tk){
   }
 }
 
+static bool is_operator(Token tk){
+  return operator2priority(tk)<=15;
+}
+
 static int find_operator(int l, int r, bool *success){
   int now_max_power = -1, now_max_index = -1;
   int tot_parentheses = 0;
@@ -193,7 +197,8 @@ static int find_operator(int l, int r, bool *success){
       tot_parentheses-=1;
       continue;
     }
-    if(tot_parentheses!=0) continue;
+    if(tot_parentheses!=0 
+      && is_operator(tokens[i])) continue;
 
     int now_power = operator2priority(tokens[i]);
     if(now_power>now_max_power){

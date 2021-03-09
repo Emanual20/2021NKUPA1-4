@@ -303,6 +303,7 @@ static uint32_t eval(int l, int r, bool *success){
 }
 
 uint32_t expr(char *e, bool *success) {
+  printf("before calc expr is_success:%d\n", *success);
   if (!make_token(e)) {
     *success = false;
     return 0;

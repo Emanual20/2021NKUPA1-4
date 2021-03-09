@@ -197,6 +197,7 @@ static int find_operator(int l, int r, bool *success){
       tot_parentheses-=1;
       continue;
     }
+    
     if(tot_parentheses!=0 
       && !is_operator(tokens[i])) continue;
 

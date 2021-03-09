@@ -115,22 +115,96 @@ static bool make_token(char *e) {
   return true;
 }
 
-bool check_parentheses(int l, int r, bool *success){
-  return false;
-}
-
 bool check_pre_valid(int l, int r){
   int tot = 0;
   for(int i=l;i<=r;i++){
+    if(tokens[i].type=='('){
+      tot+=1;
+    }
+    else if(tokens[i].type==')'){
+      tot-=1;
+    }
+    if(tot<0){
+      return false;
+    }
+  }
+  return tot==0;
+}
 
+bool check_parentheses(int l, int r, bool *success){
+  if(!check_pre_valid(l,r)){
+    *success=false;
+    return *success;
+  }
+  if(tokens[l].type=='('&&tokens[r].type==')'){
+    if(check_pre_valid(l+1,r-1)){
+      return true;
+    }
+  }
+  *success=false;
+  return *success;
+}
+
+static uint32_t operator2priority(Token tk){
+  switch(tk.type){
+    case TK_NOT:{
+      return 2;
+    }
+    case '*':
+    case '/':{
+      return 3;
+    }
+    case '+':
+    case '-':{
+      return 4;
+    }
+    case TK_EQ:
+    case TK_NEQ:{
+      return 7;
+    }
+    case TK_AND:{
+      return 8;
+    }
+    case TK_OR:{
+      return 10;
+    }
+    case TK_LOGAND:{
+      return 11;
+    }
+    case TK_LOGOR:{
+      return 12;
+    }
+    default:{
+      return 16;
+    }
   }
 }
 
-int find_operator(int l, int r, bool *success){
-  return 0;
+static int find_operator(int l, int r, bool *success){
+  int now_max_power = -1, now_max_index = -1;
+  int tot_parentheses = 0;
+  for(int i=l;i<=r;i++){
+    /*make sure the operator is not between lp and rp*/
+    if(tokens[i].type=='('){
+      tot_parentheses+=1;
+      continue;
+    }
+    else if(tokens[i].type==')'){
+      tot_parentheses-=1;
+      continue;
+    }
+    if(tot_parentheses!=0) continue;
+
+    int now_power = operator2priority(tokens[i]);
+    if(now_power>now_max_power){
+      now_max_power=now_power;
+      now_max_index=i;
+    }
+  }
+  return now_max_index;
 }
 
-uint32_t eval(int l, int r, bool *success){
+static uint32_t eval(int l, int r, bool *success){
   if(l>r){
     *success=false;
     return 0;
@@ -143,7 +217,7 @@ uint32_t eval(int l, int r, bool *success){
         return strtoul(tokens[l].str,NULL,0);
       }
       default:{
-        /* TODO: fix further..*/
+        /* TODO: fix further for regs..*/
         return 0;
       }
     }

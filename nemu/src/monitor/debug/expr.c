@@ -115,6 +115,21 @@ static bool make_token(char *e) {
   return true;
 }
 
+bool check_parentheses(int l, int r, bool *success){
+  return false;
+}
+
+bool check_pre_valid(int l, int r){
+  int tot = 0;
+  for(int i=l;i<=r;i++){
+
+  }
+}
+
+int find_operator(int l, int r, bool *success){
+  return 0;
+}
+
 uint32_t eval(int l, int r, bool *success){
   if(l>r){
     *success=false;

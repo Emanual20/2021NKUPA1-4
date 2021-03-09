@@ -109,7 +109,6 @@ static bool make_token(char *e) {
             nr_token++;
           }
         }
-
         break;
       }
     }
@@ -311,13 +310,13 @@ static uint32_t eval(int l, int r, bool *success){
 }
 
 uint32_t expr(char *e, bool *success) {
-  printf("before calc expr is_success:%d\n", *success);
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
 
   /* TODO: Insert codes to evaluate the expression. */
+  printf("before calc expr is_success:%d\n", *success);
   printf("l:%d r:%d\n", 0, nr_token-1);
   return eval(0,nr_token-1,success);
 }

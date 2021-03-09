@@ -8,7 +8,9 @@
 
 enum {
   TK_NOTYPE = 256, 
-  TK_EQ, TK_NEQ, TK_AND, TK_OR, TK_NOT
+  TK_OR, TK_AND,
+  TK_EQ, TK_NEQ, TK_LOGAND, TK_LOGOR, TK_NOT,
+  NUM_10, NUM_16
 
   /* TODO: Add more token types */
 
@@ -29,10 +31,14 @@ static struct rule {
   {"\\/", '/'},          // div
   {"\\+", '+'},          // plus
   {"\\-", '-'},          // minus
-  {"\\|\\|", TK_OR},      // log-or
-  {"&&", TK_AND},         // log-and
+  {"\\|", TK_OR},        // calc-or
+  {"&", TK_AND},         // calc-and
+  {"\\|\\|", TK_LOGOR},      // log-or
+  {"&&", TK_LOGAND},         // log-and
   {"==", TK_EQ},         // equal
   {"!=", TK_NEQ},        // not-equal
+  {"[1-9][0-9]+", NUM_10}, // num with radix 10
+  {"0[xX][a-fA-F0-9]+", NUM_16}, // num with radix 16
   {"\\(", '('},          // l-parentheses
   {"\\)", ')'},          // r-patentheses
 };
@@ -90,7 +96,10 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          default: TODO();
+          default: {
+            tokens[nr_token].type = rules[i].token_type;
+            nr_token++;
+          }
         }
 
         break;
@@ -106,7 +115,90 @@ static bool make_token(char *e) {
   return true;
 }
 
-
+uint32_t eval(int l, int r, bool *success){
+  if(l>r){
+    *success=false;
+    return 0;
+  }
+  if(l==r){
+    *success=true;
+    switch(tokens[l].type){
+      case NUM_10:
+      case NUM_16:{
+        return strtoul(tokens[l].str,NULL,0);
+      }
+      default:{
+        /* TODO: fix further..*/
+        return 0;
+      }
+    }
+  }
+  else if(check_parentheses(l, r, success)){
+    return eval(l+1,r-1,success);
+  }
+  else{
+    int opIndex = find_operator(l,r,success);
+    uint32_t val1 = 0;
+    if(tokens[opIndex].type==TK_NOT){
+      val1=eval(l,opIndex-1,success);
+      if(*success){
+        return !val1;
+      }
+      else{
+        return 0;
+      }
+    }
+    uint32_t val2 = 0;
+    val2 = eval(opIndex+1,r,success);
+    if(!*success){
+      return 0;
+    }
+    switch(tokens[opIndex].type){
+      case '+':{
+        return val1+val2;
+      }
+      case '-':{
+        if(val1>val2) return val1-val2;
+        else{
+          printf("cuz this is a unsigned number,so the result is wrong literally..!\n");
+          return val1-val2;
+        }
+      }
+      case '*':{
+        return val1*val2;
+      }
+      case '/':{
+        if(val2==0){
+          printf("divide 0 error..!\n");
+          *success=false;
+          return 0;
+        }
+        return val1/val2;
+      }
+      case TK_LOGAND:{
+        return val1&&val2;
+      }
+      case TK_LOGOR:{
+        return val1||val2;
+      }
+      case TK_EQ:{
+        return val1==val2;
+      }
+      case TK_NEQ:{
+        return val1!=val2;
+      }
+      case TK_AND:{
+        return val1&val2;
+      }
+      case TK_OR:{
+        return val1|val2;
+      }
+      default:{
+        assert(0);
+      }
+    }
+  }
+}
 
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -115,7 +207,5 @@ uint32_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
-
-  return 0;
+  return eval(0,nr_token-1,success);
 }

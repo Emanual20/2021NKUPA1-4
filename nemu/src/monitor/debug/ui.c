@@ -167,7 +167,9 @@ static int cmd_w(char *args){
     return 0;
   }
   bool success;
+  printf("hello\n");
   uint32_t res = expr(arg, &success);
+  printf("hello1\n");
   if(!success){
     printf("u must check the format of your expression..!\n");
     return 0;

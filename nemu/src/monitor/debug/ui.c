@@ -173,19 +173,19 @@ static int cmd_w(char *args){
   }
   bool success;
   uint32_t res = expr(arg, &success);
-  printf("hello1\n");
+  // printf("hello1\n");
   if(!success){
     printf("u must check the format of your expression..!\n");
     return 0;
   }
-  printf("hello2\n");
+  // printf("hello2\n");
   WP *mywp = new_wp();
-  printf("hello3,%d\n",res);
-  printf("out new_wp():%d\n",mywp);
-  printf("out new wp() NO:%d\n", mywp->NO);
+  // printf("hello3,%d\n",res);
+  // printf("out new_wp():%d\n",mywp);
+  // printf("out new wp() NO:%d\n", mywp->NO);
   mywp->value = res;
-  printf("hello4\n");
-  printf("%d\n", strlen(arg));
+  // printf("hello4\n");
+  // printf("%d\n", strlen(arg));
   for(int i=0;arg[i];i++){
     mywp->expr[i] = arg[i];
   }

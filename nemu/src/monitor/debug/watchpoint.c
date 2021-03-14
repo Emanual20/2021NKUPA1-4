@@ -34,10 +34,10 @@ WP* new_wp(){
 	free_ = free_ -> next;
 	ret -> next = head;
 	head = ret;
-	printf("ret_value:%d\n",ret->value);
+	// printf("ret_value:%d\n",ret->value);
 	ret->value = 1;
-	printf("ret_new_value:%d\n",ret->value);
-	printf("in new_wp():%d\n",ret);
+	// printf("ret_new_value:%d\n",ret->value);
+	// printf("in new_wp():%d\n",ret);
 	return ret;
 }
 

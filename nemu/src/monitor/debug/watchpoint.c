@@ -16,7 +16,7 @@ void init_wp_pool() {
   wp_pool[NR_WP - 1].next = NULL;
 
   for(i=0;i<NR_WP-1;i++){
-  	printf("%d\n", wp_pool[i].next->NO);
+  	printf("%d\n", wp_pool[i].value);
   }
 
   head = NULL;
@@ -34,7 +34,7 @@ WP* new_wp(){
 	free_ = free_ -> next;
 	ret -> next = head;
 	head = ret;
-	printf("%d,%d\n",ret->NO,ret->next->NO);
+	printf("%d\n",ret->NO);
 	return ret;
 }
 

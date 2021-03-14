@@ -34,7 +34,7 @@ WP* new_wp(){
 	free_ = free_ -> next;
 	ret -> next = head;
 	head = ret;
-	printf("%d\n",ret->value);
+	printf("ret_value:%d\n",ret->value);
 	return ret;
 }
 

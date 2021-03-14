@@ -15,9 +15,9 @@ void init_wp_pool() {
   }
   wp_pool[NR_WP - 1].next = NULL;
 
-  for(i=0;i<NR_WP-1;i++){
-  	printf("%d\n", wp_pool[i].value);
-  }
+  // for(i=0;i<NR_WP-1;i++){
+  // 	printf("%d\n", wp_pool[i].value);
+  // }
 
   head = NULL;
   free_ = wp_pool;

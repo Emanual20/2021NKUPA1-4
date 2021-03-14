@@ -30,7 +30,7 @@ WP* new_wp(){
 	free_ = free_ -> next;
 	ret -> next = head;
 	head = ret;
-	printf("%d\n",ret->NO);
+	printf("%d,%d,%d\n",ret->NO,ret->next->NO,ret->value);
 	return ret;
 }
 

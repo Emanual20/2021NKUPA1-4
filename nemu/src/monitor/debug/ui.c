@@ -144,7 +144,7 @@ static int cmd_x(char *args){
 }
 
 static int cmd_p(char *args){
-  char *arg = strtok(NULL,"");
+  char *arg = strtok(NULL," ");
   if(arg==NULL){
     printf("please input the expression u wanna calculate..!\n");
     return 0;
@@ -161,7 +161,7 @@ static int cmd_p(char *args){
 }
 
 static int cmd_w(char *args){
-  char *arg = strtok(NULL, "");
+  char *arg = strtok(NULL, " ");
   if(arg == NULL){
     printf("u must clain the expression of watchpoint..!\n");
     return 0;

@@ -112,6 +112,9 @@ static int cmd_info(char *args){
       printf("%s:0x%x\n", reg_name(i,4), reg_l(i));
     }
   }
+  else if(strcmp(arg,"w")==0){
+    print_watchpointsinfo();
+  }
   else{
     printf("undefined subcmd for info..\n");
   }
@@ -158,7 +161,24 @@ static int cmd_p(char *args){
 }
 
 static int cmd_w(char *args){
-
+  char *arg = strtok(NULL, "");
+  if(arg == NULL){
+    printf("u must clain the expression of watchpoint..!\n");
+    return 0;
+  }
+  bool success;
+  uint32_t res = expr(arg, &success);
+  if(!success){
+    printf("u must check the format of your expression..!\n");
+    return 0;
+  }
+  WP *mywp = new_wp();
+  mywp->value = res;
+  for(int i=0;arg[i];i++){
+    mywp->expr[i] = arg[i];
+  }
+  mywp->expr[strlen(arg)] = '\0';
+  return 0;
 }
 
 static int cmd_d(char *args){

@@ -64,3 +64,15 @@ void free_wp(int n){
 void free_wpn(WP *wp){
 	return free_wp(wp->NO);
 }
+
+void print_watchpointsinfo(){
+	WP* temp_ptr = head;
+	if(!temp_ptr){
+		printf("no watchpoint is in use..!\n");
+		return;
+	}
+	while(temp_ptr){
+		printf("%d\t,%s\t,%d\t\n", temp_ptr->NO, temp_ptr->expr, temp_ptr->value);
+		temp_ptr = temp_ptr -> next;
+	}
+}

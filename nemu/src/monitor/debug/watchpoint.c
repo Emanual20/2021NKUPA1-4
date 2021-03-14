@@ -76,3 +76,24 @@ void print_watchpointsinfo(){
 		temp_ptr = temp_ptr -> next;
 	}
 }
+
+bool check_watchpointsvalue(){
+	WP* temp_ptr = head;
+	bool ret = false, success = true;
+	while(temp_ptr){
+		uint32_t now_value = expr(temp_ptr->expr, &success);
+		if(!success){
+			printf("calc expr %s value fail..\n",temp_ptr->expr);
+			continue;
+		}
+		if(now_value != temp_ptr->value){
+			ret = true;
+			printf("%d\t,%s\t,%d\t,%d\t\n",
+				temp_ptr->NO,temp_ptr->expr,
+				temp_ptr->value,now_value);
+			temp_ptr->value = now_value;
+		}
+		temp_ptr = temp_ptr->next;
+	}
+	return ret;
+}

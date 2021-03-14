@@ -167,14 +167,15 @@ static int cmd_w(char *args){
     return 0;
   }
   bool success;
-  printf("hello\n");
   uint32_t res = expr(arg, &success);
   printf("hello1\n");
   if(!success){
     printf("u must check the format of your expression..!\n");
     return 0;
   }
+  printf("hello2\n");
   WP *mywp = new_wp();
+  printf("hello3\n");
   mywp->value = res;
   for(int i=0;arg[i];i++){
     mywp->expr[i] = arg[i];

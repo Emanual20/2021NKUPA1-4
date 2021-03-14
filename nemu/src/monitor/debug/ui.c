@@ -44,7 +44,7 @@ static int cmd_info(char *args);
 static int cmd_p(char *args);
 static int cmd_x(char *args);
 static int cmd_w(char *args);
-static int cmd_d(char *args){};
+static int cmd_d(char *args);
 
 static struct {
   char *name;
@@ -159,6 +159,17 @@ static int cmd_p(char *args){
 
 static int cmd_w(char *args){
 
+}
+
+static int cmd_d(char *args){
+  char *arg = strtok(NULL, " ");
+  if(arg == NULL){
+    printf("u must claim the number of watchpoint to delete..!\n");
+    return 0;
+  }
+  int aim = atoi(arg);
+  free_wpn(aim);
+  return 0;
 }
 
 void ui_mainloop(int is_batch_mode) {

@@ -32,12 +32,12 @@ WP* new_wp(){
 	return ret;
 }
 
-void free_wp(WP *wp){
+void free_wp(int n){
 	WP* temp_ptr = head;
 	WP* temp_back_ptr = NULL;
 	WP* aim_ptr = NULL;
 	while(temp_ptr){
-		if(temp_ptr->NO == wp->NO){
+		if(temp_ptr->NO == n){
 			aim_ptr = temp_ptr;
 			break;
 		}
@@ -59,4 +59,8 @@ void free_wp(WP *wp){
 
 	aim_ptr -> next = free_;
 	free_ =  aim_ptr;
+}
+
+void free_wpn(WP *wp){
+	return free_wp(wp->NO);
 }

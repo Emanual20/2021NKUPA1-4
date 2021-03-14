@@ -12,6 +12,7 @@ void init_wp_pool() {
   	wp_pool[i].value = 0;
     wp_pool[i].NO = i;
     wp_pool[i].next = &wp_pool[i + 1];
+    printf("%d\n", wp_pool[i].NO);
   }
   wp_pool[NR_WP - 1].next = NULL;
 

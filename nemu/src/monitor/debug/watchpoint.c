@@ -89,6 +89,7 @@ void print_watchpointsinfo(){
 bool check_watchpointsvalue(){
 	WP* temp_ptr = head;
 	bool ret = false, success = true;
+	printf("wp_NO\t,wp_EXPR\t,wp_ovalue\t,wp_nvalue\t\n");
 	while(temp_ptr){
 		uint32_t now_value = expr(temp_ptr->expr, &success);
 		if(!success){

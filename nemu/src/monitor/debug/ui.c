@@ -176,6 +176,7 @@ static int cmd_w(char *args){
   printf("hello2\n");
   WP *mywp = new_wp();
   printf("hello3,%d\n",res);
+  printf("out new_wp():%d\n",mywp);
   mywp->value = res;
   printf("hello4\n");
   printf("%d\n", strlen(arg));

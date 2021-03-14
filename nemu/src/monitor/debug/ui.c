@@ -8,6 +8,11 @@
 #include <readline/history.h>
 
 void cpu_exec(uint64_t);
+WP* new_wp();
+void free_wpn(int n);
+void free_wp(WP* wp);
+void print_watchpointsinfo();
+bool check_watchpointsvalue();
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 char* rl_gets() {

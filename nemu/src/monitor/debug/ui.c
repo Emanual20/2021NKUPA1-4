@@ -43,7 +43,7 @@ static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_p(char *args);
 static int cmd_x(char *args);
-static int cmd_w(char *args){};
+static int cmd_w(char *args);
 static int cmd_d(char *args){};
 
 static struct {
@@ -155,6 +155,10 @@ static int cmd_p(char *args){
     printf("%d\n", ans);
   }
   return 0;
+}
+
+static int cmd_w(char *args){
+
 }
 
 void ui_mainloop(int is_batch_mode) {

@@ -1,6 +1,7 @@
 include Makefile.check
 
-AM_HOME ?= $(shell pwd)
+# AM_HOME ?= $(shell pwd)
+AM_HOME ?= /home/rexxar/PA2021_0308/ics2018/nexus-am/
 
 all:
 	@$(MAKE) -C am

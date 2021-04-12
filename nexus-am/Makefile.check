@@ -1,3 +1,7 @@
+AM_HOME ?= /home/rexxar/PA2021_0308/ics2018/nexus-am
+NEMU_HOME ?= /home/rexxar/PA2021_0308/ics2018/nemu
+NAVY_HOME ?= /home/rexxar/PA2021_0308/ics2018/navy-apps
+
 ifneq ($(MAKECMDGOALS),clean) # ignore check for make clean
 
 ifeq ($(AM_HOME),) # AM_HOME must exist

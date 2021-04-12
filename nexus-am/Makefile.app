@@ -1,5 +1,9 @@
 .DEFAULT_GOAL = app
 
+export AM_HOME ?= /home/rexxar/PA2021_0308/ics2018/nexus-am
+export NEMU_HOME ?= /home/rexxar/PA2021_0308/ics2018/nemu
+export NAVY_HOME ?= /home/rexxar/PA2021_0308/ics2018/navy-apps
+
 include $(AM_HOME)/Makefile.check
 $(info Building $(NAME) [$(ARCH)])
 

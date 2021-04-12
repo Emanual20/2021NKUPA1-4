@@ -1,7 +1,9 @@
 include Makefile.check
 
 # AM_HOME ?= $(shell pwd)
-AM_HOME ?= /home/rexxar/PA2021_0308/ics2018/nexus-am/
+export AM_HOME ?= /home/rexxar/PA2021_0308/ics2018/nexus-am
+export NEMU_HOME ?= /home/rexxar/PA2021_0308/ics2018/nemu
+export NAVY_HOME ?= /home/rexxar/PA2021_0308/ics2018/navy-apps
 
 all:
 	@$(MAKE) -C am

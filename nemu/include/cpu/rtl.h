@@ -156,6 +156,8 @@ static inline void rtl_push(const rtlreg_t* src1) {
   printf("hello1\n");
   cpu.esp = cpu.esp - 4;
   printf("hello2\n");
+  printf("%p\n",cpu.esp);
+  printf("%p\n",&cpu.esp);
   rtl_sm(&cpu.esp,src1,4);
   printf("hello3\n");
 }

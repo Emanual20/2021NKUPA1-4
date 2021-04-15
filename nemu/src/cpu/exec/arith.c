@@ -7,6 +7,7 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
+  printf("hello\n");
   TODO();
 
   print_asm_template2(sub);

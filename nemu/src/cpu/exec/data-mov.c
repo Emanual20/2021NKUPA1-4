@@ -7,9 +7,9 @@ make_EHelper(mov) {
 
 make_EHelper(push) {
   rtl_sext(&t0,&id_dest->val,id_dest->width);
-  printf("inpush1\n");
+  // printf("inpush1\n");
   rtl_push(&t0);
-  printf("inpush2\n");
+  // printf("inpush2\n");
   print_asm_template1(push);
 }
 

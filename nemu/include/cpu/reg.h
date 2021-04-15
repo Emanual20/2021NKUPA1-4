@@ -51,7 +51,7 @@ typedef struct {
       uint32_t    : 20;
     };
     uint32_t eflags;
-  }
+  };
 
 } CPU_state;
 

@@ -148,12 +148,12 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
 static inline void rtl_push(const rtlreg_t* src1) {
   // esp <- esp - 4
   // M[esp] <- src1
-  return;
-  printf("hello1");
+  //return;
+  printf("hello1\n");
   cpu.esp = cpu.esp - 4;
-  printf("hello2");
+  printf("hello2\n");
   rtl_sm(&cpu.esp,src1,4);
-  printf("hello3");
+  printf("hello3\n");
 }
 
 static inline void rtl_pop(rtlreg_t* dest) {

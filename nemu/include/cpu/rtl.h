@@ -64,13 +64,13 @@ static inline void rtl_lm(rtlreg_t *dest, const rtlreg_t* addr, int len) {
 }
 
 static inline void rtl_sm(rtlreg_t* addr, int len, const rtlreg_t* src1) {
-  printf("in save memory1\n");
-  printf("addr: %p\n",addr);
-  printf("addr's value: %p\n", *addr);
-  printf("src: %p\n",src1);
-  printf("src's value: %p\n", *src1);
+  // printf("in save memory1\n");
+  // printf("addr: %p\n",addr);
+  // printf("addr's value: %p\n", *addr);
+  // printf("src: %p\n",src1);
+  // printf("src's value: %p\n", *src1);
   vaddr_write(*addr, len, *src1);
-  printf("in save memory2\n");
+  // printf("in save memory2\n");
 }
 
 static inline void rtl_lr_b(rtlreg_t* dest, int r) {
@@ -155,14 +155,14 @@ static inline void rtl_push(const rtlreg_t* src1) {
   // esp <- esp - 4
   // M[esp] <- src1
   //return;
-  printf("hello1\n");
+  // printf("hello1\n");
   cpu.esp = cpu.esp - 4;
-  printf("hello2\n");
+  // printf("hello2\n");
   // printf("%p\n",cpu.esp);
   // printf("%p\n",&cpu.esp);
   // printf("%p\n",*(&cpu.esp));
-  rtl_sm(&cpu.esp,src1,4);
-  printf("hello3\n");
+  rtl_sm(&cpu.esp,4,src1);
+  // printf("hello3\n");
 }
 
 static inline void rtl_pop(rtlreg_t* dest) {

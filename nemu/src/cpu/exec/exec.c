@@ -240,7 +240,7 @@ void exec_wrapper(bool print_flag) {
   printf("%d %d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
   int instr_len = decoding.seq_eip - cpu.eip;
   printf("hello-debug2: %d\n", instr_len);
-  sprintf(decoding.p, "%*.s", 50 - (12 + 3 * instr_len), "");
+  sprintf(decoding.p, "%*.s", min(0,50 - (12 + 3 * instr_len)), "");
   printf("%d %d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
   printf("hello-debug3\n");
   printf("%s\n%s\n",decoding.asm_buf,decoding.assembly);

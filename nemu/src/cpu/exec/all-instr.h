@@ -18,4 +18,6 @@ make_EHelper(call);
 make_EHelper(jmp);
 make_EHelper(ret);
 
+// data-mov.c
 make_EHelper(push);
+make_EHelper(lea);

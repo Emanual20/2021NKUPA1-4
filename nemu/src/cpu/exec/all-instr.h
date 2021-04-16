@@ -10,6 +10,7 @@ make_EHelper(nemu_trap);
 // arith.c
 make_EHelper(add);
 make_EHelper(sub);
+make_EHelper(cmp);
 make_EHelper(dec);
 
 // logic.c

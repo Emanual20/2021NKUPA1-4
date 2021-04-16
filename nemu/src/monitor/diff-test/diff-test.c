@@ -151,7 +151,7 @@ void difftest_step(uint32_t eip) {
   // Set `diff` as `true` if they are not the same.
   
   for(int i=R_EAX;i<=R_EDI;i++){
-    printf("hello\n");
+    // printf("hello\n");
     if(cpu.gpr[i]._32!=r.array[i]){
       printf("DIFF value at %s, AM: 0x%x, REF: 0x%x\n",
             reg_name(i,4),reg_l(i),r.array[i]);

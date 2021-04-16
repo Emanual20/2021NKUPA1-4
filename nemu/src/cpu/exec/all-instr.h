@@ -16,6 +16,7 @@ make_EHelper(dec);
 // logic.c
 make_EHelper(test);
 make_EHelper(xor);
+make_EHelper(or);
 make_EHelper(and);
 make_EHelper(sar);
 make_EHelper(shl);

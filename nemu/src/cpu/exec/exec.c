@@ -229,8 +229,10 @@ void exec_wrapper(bool print_flag) {
   decoding.p += sprintf(decoding.p, "%8x:   ", cpu.eip);
 #endif
 
+  printf("before exec instr: 0x%x", cpu.eip);
   decoding.seq_eip = cpu.eip;
   exec_real(&decoding.seq_eip);
+  printf("after exec instr: 0x%x", cpu.eip);
 
 #ifdef DEBUG
   int instr_len = decoding.seq_eip - cpu.eip;

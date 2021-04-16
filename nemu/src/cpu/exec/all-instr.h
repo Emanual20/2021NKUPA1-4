@@ -21,6 +21,7 @@ make_EHelper(and);
 make_EHelper(sar);
 make_EHelper(shl);
 make_EHelper(setcc);
+make_EHelper(not);
 
 // control.c
 make_EHelper(call);

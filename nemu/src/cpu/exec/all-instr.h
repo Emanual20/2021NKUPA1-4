@@ -31,6 +31,7 @@ make_EHelper(ret);
 // data-mov.c
 make_EHelper(push);
 make_EHelper(pop);
+make_EHelper(leave);
 make_EHelper(movsx);
 make_EHelper(movzx);
 make_EHelper(lea);

@@ -229,27 +229,27 @@ void exec_wrapper(bool print_flag) {
   decoding.p += sprintf(decoding.p, "%8x:   ", cpu.eip);
 #endif
 
-  printf("before exec instr: 0x%x\n", cpu.eip);
+  // printf("before exec instr: 0x%x\n", cpu.eip);
   decoding.seq_eip = cpu.eip;
   exec_real(&decoding.seq_eip);
-  printf("%d\n%d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
-  printf("after exec instr: 0x%x\n", cpu.eip);
+  // printf("%d\n%d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
+  // printf("after exec instr: 0x%x\n", cpu.eip);
 
 #ifdef DEBUG
-  printf("hello-debug1\n");
-  printf("%d %d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
+  // printf("hello-debug1\n");
+  // printf("%d %d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
   int instr_len = decoding.seq_eip - cpu.eip;
-  printf("hello-debug2: %d\n", instr_len);
+  // printf("hello-debug2: %d\n", instr_len);
   int tmp = 50 - (12 + 3 * (instr_len>0?instr_len:0));
   sprintf(decoding.p, "%*.s", tmp, "");
-  printf("%d %d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
-  printf("hello-debug3\n");
-  printf("%s\n%s\n",decoding.asm_buf,decoding.assembly);
-  printf("%d %d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
+  // printf("%d %d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
+  // printf("hello-debug3\n");
+  // printf("%s\n%s\n",decoding.asm_buf,decoding.assembly);
+  // printf("%d %d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
   strcat(decoding.asm_buf, decoding.assembly);
-  printf("hello-debug4\n");
+  // printf("hello-debug4\n");
   Log_write("%s\n", decoding.asm_buf);
-  printf("hello-debug5\n");
+  // printf("hello-debug5\n");
   if (print_flag) {
     puts(decoding.asm_buf);
   }
@@ -259,9 +259,9 @@ void exec_wrapper(bool print_flag) {
   uint32_t eip = cpu.eip;
 #endif
 
-  printf("before update eip\n");
+  // printf("before update eip\n");
   update_eip();
-  printf("after update eip\n");
+  // printf("after update eip\n");
 
 #ifdef DIFF_TEST
   void difftest_step(uint32_t);

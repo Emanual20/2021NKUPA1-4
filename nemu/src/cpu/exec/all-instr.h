@@ -14,6 +14,7 @@ make_EHelper(sub);
 make_EHelper(xor);
 make_EHelper(and);
 make_EHelper(sar);
+make_EHelper(shl);
 
 // control.c
 make_EHelper(call);

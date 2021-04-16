@@ -248,7 +248,9 @@ void exec_wrapper(bool print_flag) {
   uint32_t eip = cpu.eip;
 #endif
 
+  printf("before update eip\n");
   update_eip();
+  printf("after update eip\n");
 
 #ifdef DIFF_TEST
   void difftest_step(uint32_t);

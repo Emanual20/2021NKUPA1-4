@@ -9,6 +9,7 @@ make_EHelper(test) {
 make_EHelper(and) {
   rtl_sext(&t0, &id_src->val, id_src->width);
   rtl_and(&t0, &id_dest->val, &t0);
+  operand_write(id_dest, &t0);
 
   rtl_li(&t1, 0);
   rtl_set_CF(&t1);

@@ -165,6 +165,6 @@ void difftest_step(uint32_t eip) {
 
   if (diff) {
     nemu_state = NEMU_END;
-    printf("NOW eip is: 0x%x", cpu.eip);
+    printf("NOW eip is: 0x%x\n", cpu.eip);
   }
 }

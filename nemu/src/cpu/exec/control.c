@@ -33,7 +33,8 @@ make_EHelper(call) {
   cpu.eip=decoding.jmp_eip;
   decoding.is_jmp = 1;
   printf("hello-out3\n");
-  // print_asm("call %x", decoding.jmp_eip);
+  print_asm("call %x", decoding.jmp_eip);
+  printf("hello-out4\n");
 }
 
 make_EHelper(ret) {

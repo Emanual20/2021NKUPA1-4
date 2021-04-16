@@ -12,6 +12,7 @@ make_EHelper(sub);
 
 // logic.c
 make_EHelper(xor);
+make_EHelper(and);
 
 // control.c
 make_EHelper(call);

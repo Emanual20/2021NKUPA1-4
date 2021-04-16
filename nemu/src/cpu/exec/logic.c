@@ -7,7 +7,14 @@ make_EHelper(test) {
 }
 
 make_EHelper(and) {
-  TODO();
+  rtl_sext(&t0, &id_src->val, id_src->width);
+  rtl_and(&t0, &id_dest->val, &t0);
+
+  rtl_li(&t1, 0);
+  rtl_set_CF(&t1);
+  rtl_set_OF(&t1);
+
+  rtl_update_ZFSF(&t0, id_dest->width);
 
   print_asm_template2(and);
 }

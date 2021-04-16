@@ -21,6 +21,7 @@ make_EHelper(setcc);
 // control.c
 make_EHelper(call);
 make_EHelper(jmp);
+make_EHelper(jcc);
 make_EHelper(ret);
 
 // data-mov.c

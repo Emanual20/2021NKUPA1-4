@@ -241,6 +241,7 @@ void exec_wrapper(bool print_flag) {
   sprintf(decoding.p, "%*.s", 50 - (12 + 3 * instr_len), "");
   printf("hello-debug3\n");
   printf("%s\n%s\n",decoding.asm_buf,decoding.assembly);
+  printf("%d\n%d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
   strcat(decoding.asm_buf, decoding.assembly);
   printf("hello-debug4\n");
   Log_write("%s\n", decoding.asm_buf);

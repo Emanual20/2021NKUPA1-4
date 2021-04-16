@@ -30,6 +30,7 @@ make_EHelper(jcc);
 make_EHelper(ret);
 
 // data-mov.c
+make_EHelper(mov);
 make_EHelper(push);
 make_EHelper(pop);
 make_EHelper(leave);

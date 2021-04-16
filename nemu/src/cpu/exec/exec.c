@@ -239,7 +239,7 @@ void exec_wrapper(bool print_flag) {
   // printf("hello-debug1\n");
   printf("%d %d\n",strlen(decoding.asm_buf),strlen(decoding.assembly));
   int instr_len = decoding.seq_eip - cpu.eip;
-  // printf("hello-debug2: %d\n", instr_len);
+  printf("hello-debug2: %d\n", instr_len);
   int tmp = 50 - (12 + 3 * (instr_len>0?instr_len:0));
   sprintf(decoding.p, "%*.s", tmp, "");
   // printf("hello-debug3\n");

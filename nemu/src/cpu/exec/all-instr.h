@@ -38,3 +38,6 @@ make_EHelper(leave);
 make_EHelper(movsx);
 make_EHelper(movzx);
 make_EHelper(lea);
+
+// prefix.c
+make_EHelper(operand_size);

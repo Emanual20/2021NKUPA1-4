@@ -2,6 +2,7 @@
 
 make_EHelper(mov);
 
+// prefix.c
 make_EHelper(operand_size);
 
 make_EHelper(inv);
@@ -39,5 +40,5 @@ make_EHelper(movsx);
 make_EHelper(movzx);
 make_EHelper(lea);
 
-// prefix.c
-make_EHelper(operand_size);
+// special.c
+make_EHelper(nop);

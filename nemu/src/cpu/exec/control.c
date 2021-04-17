@@ -13,7 +13,7 @@ make_EHelper(jcc) {
   rtl_setcc(&t2, subcode);
   decoding.is_jmp = t2;
   if(subcode == 5){
-    printf("%d\n", decoding.is_jmp);
+    decoding.is_jmp = 0;
   }
 
   print_asm("j%s %x", get_cc_name(subcode), decoding.jmp_eip);

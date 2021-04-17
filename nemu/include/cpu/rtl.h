@@ -142,7 +142,7 @@ static inline void rtl_not(rtlreg_t* dest) {
 
 static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- signext(src1[(width * 8 - 1) .. 0])
-  rtlreg_t tmp=(*src1)&(0xffffffff >> ((4-width)<<3));
+  rtlreg_t tmp=(*src1)&(~0u >> ((4-width)<<3));
   switch(width){
     case 4:*dest=(uint32_t)tmp;break;
     case 2:*dest=(uint32_t)(int16_t)tmp;break;
@@ -192,12 +192,12 @@ static inline void rtl_neq0(rtlreg_t* dest, const rtlreg_t* src1) {
 
 static inline void rtl_msb(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- src1[width * 8 - 1]
-  *dest = ((*src1) >> ((width >> 3) - 1)) & 0x1;
+  *dest = ((*src1) >> ((width << 3) - 1)) & 0x1;
 }
 
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
   // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
-  cpu.ZF=((*result)&(0xffffffff>>((4-width)<<3)))==0;
+  cpu.ZF=((*result)&(~0u>>((4-width)<<3)))==0;
 }
 
 static inline void rtl_update_SF(const rtlreg_t* result, int width) {

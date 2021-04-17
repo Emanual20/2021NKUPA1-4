@@ -27,7 +27,7 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
       break;
     }
     case CC_BE:{
-      *dest = cpu.ZF || cpu.OF;
+      *dest = cpu.ZF || cpu.CF;
       break;
     }
     case CC_S:{

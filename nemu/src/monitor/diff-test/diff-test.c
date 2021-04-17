@@ -162,6 +162,7 @@ void difftest_step(uint32_t eip) {
     printf("DIFF value at eip, AM: 0x%x, REF: 0x%x\n", cpu.eip,r.eip);
     diff=true;
   }
+  
 
   if((r.eflags&0x1) != cpu.CF){
     printf("DIFF value at cpu.CF, AM: 0x%x, REF: 0x%x\n", cpu.CF, r.eflags & 0x1);

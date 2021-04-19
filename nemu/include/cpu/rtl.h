@@ -190,6 +190,19 @@ static inline void rtl_neq0(rtlreg_t* dest, const rtlreg_t* src1) {
   rtl_lm(dest,&tmp,4);
 }
 
+static inline void rtl_rol(rtlreg_t *dest, const rtlreg_t *src1, const rtlreg_t *src2) {
+  rtlreg_t tmp = *src1;
+  rtl_li(&t0, *src2);
+  while (t0 --) {
+	if((tmp >> 31) & 1) {
+      tmp = tmp << 1 | 0x1;
+	} 
+	else 
+	  tmp = tmp << 1;
+  }
+  *dest = tmp;
+}
+
 static inline void rtl_msb(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- src1[width * 8 - 1]
   *dest = ((*src1) >> ((width << 3) - 1)) & 0x1;

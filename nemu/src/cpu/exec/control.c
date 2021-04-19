@@ -46,4 +46,5 @@ make_EHelper(call_rm) {
 
   printf("seq_eip:0x%x, id_dest->val: 0x%x, cpu.eip: 0x%x \n", decoding.seq_eip, id_dest->val, cpu.eip);
   print_asm("call *%s", id_dest->str);
+  printf("seq_eip:0x%x, id_dest->val: 0x%x, cpu.eip: 0x%x \n", decoding.seq_eip, id_dest->val, cpu.eip);
 }

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 nemu=build/nemu
+AM_HOME=/home/rexxar/PA2021_0308/ics2018/nexus-am
 
 if make &> /dev/null; then
   echo "NEMU compile OK"

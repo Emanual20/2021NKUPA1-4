@@ -35,5 +35,6 @@ void _draw_sync() {
 }
 
 int _read_key() {
-  return _KEY_NONE;
+  #define I8042_DATA_PORT 0x60
+  return inl(I8042_DATA_PORT);
 }

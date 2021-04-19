@@ -54,3 +54,7 @@ make_EHelper(lea);
 
 // special.c
 make_EHelper(nop);
+
+// system.c
+make_EHelper(in);
+make_EHelper(out);

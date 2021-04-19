@@ -56,6 +56,8 @@ make_EHelper(cmp) {
   // rtl_and(&t0, &t0, &t1);
   // rtl_msb(&t0, &t0, id_dest->width);
   // rtl_set_OF(&t0);
+
+  printf("o1: %d , o2: %d\n", id_dest->val, id_src->val);
   
   rtl_sub(&t0, &id_dest->val, &id_src->val);
   rtl_update_ZFSF(&t0, id_dest->width);

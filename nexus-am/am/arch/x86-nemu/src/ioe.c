@@ -9,7 +9,7 @@ void _ioe_init() {
 }
 
 unsigned long _uptime() {
-  return boot_time / 1000;
+  return 0;
 }
 
 uint32_t* const fb = (uint32_t *)0x40000;

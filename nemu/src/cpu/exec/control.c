@@ -41,10 +41,9 @@ make_EHelper(ret) {
 make_EHelper(call_rm) {
   rtl_push(&decoding.seq_eip);
   printf("seq_eip:0x%x, id_dest->val: 0x%x, cpu.eip: 0x%x \n", decoding.seq_eip, id_dest->val, cpu.eip);
-  cpu.eip = id_dest->val;
+  decoding.jmp_eip = cpu.eip = id_dest->val;
   decoding.is_jmp = 1;
 
   printf("seq_eip:0x%x, id_dest->val: 0x%x, cpu.eip: 0x%x \n", decoding.seq_eip, id_dest->val, cpu.eip);
   print_asm("call *%s", id_dest->str);
-  printf("seq_eip:0x%x, id_dest->val: 0x%x, cpu.eip: 0x%x \n", decoding.seq_eip, id_dest->val, cpu.eip);
 }

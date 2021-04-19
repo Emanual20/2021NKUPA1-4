@@ -11,7 +11,7 @@ void _ioe_init() {
 unsigned long _uptime() {
   // NOTE: divide what? I don't know...!
   unsigned long now = inl(RTC_PORT);
-  unsigned long times = 1000;
+  unsigned long times = 1;
   return (now-boot_time) / times;
 }
 

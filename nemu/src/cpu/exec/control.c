@@ -40,6 +40,7 @@ make_EHelper(ret) {
 
 make_EHelper(call_rm) {
   rtl_push(&decoding.seq_eip);
+  printf("seq_eip:%d, id_dest->val: %d\n", decoding.seq_eip, id_dest->val);
   cpu.eip = id_dest->val;
   decoding.is_jmp = 1;
 

@@ -163,7 +163,7 @@ void difftest_step(uint32_t eip) {
     diff=true;
   }
   
-/*
+
   if((r.eflags&0x1) != cpu.CF){
     printf("DIFF value at cpu.CF, AM: 0x%x, REF: 0x%x\n", cpu.CF, r.eflags & 0x1);
     diff=true;
@@ -184,7 +184,7 @@ void difftest_step(uint32_t eip) {
     printf("DIFF value at cpu.OF, AM: 0x%x, REF: 0x%x\n", cpu.OF, r.eflags & 0x800);
     diff=true;
   }
-*/
+
 
   if (diff) {
     nemu_state = NEMU_END;

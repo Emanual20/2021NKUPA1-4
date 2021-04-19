@@ -80,6 +80,13 @@ make_EHelper(shr) {
   print_asm_template2(shr);
 }
 
+make_EHelper(rol){
+  rtl_rol(&t0, &id_dest->val, &id_src->val); 
+  operand_write(id_dest, &t0);
+
+  print_asm_template2(rol);
+}
+
 make_EHelper(setcc) {
   uint8_t subcode = decoding.opcode & 0xf;
   rtl_setcc(&t2, subcode);

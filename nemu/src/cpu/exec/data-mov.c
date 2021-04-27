@@ -71,12 +71,22 @@ make_EHelper(movsx) {
   print_asm_template2(movsx);
 }
 
-make_EHelper(movsb){
-  rtl_lm(&t0,&cpu.esi,1);
-  rtl_sm(&cpu.edi,&t0,1);
-  cpu.esi+=1;
-  cpu.edi+=1;
-  print_asm_template2(movsb);
+make_EHelper(movsxy) {
+  id_dest->type = OP_TYPE_MEM;
+  id_dest->addr = cpu.gpr[R_EDI]._32;
+  id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
+  t0 = cpu.gpr[R_ESI]._32;
+  rtl_lm(&t1, &t0, id_dest->width);
+  operand_write(id_dest, &t1);
+  cpu.gpr[R_ESI]._32 += (cpu.DF ? -id_dest->width : id_dest->width);
+  cpu.gpr[R_EDI]._32 += (cpu.DF ? -id_dest->width : id_dest->width);
+
+#ifdef DEBUG
+  sprintf(id_src->str, "%s%#x", ((int)t0 < 0 ? "-" : ""), ((int)t0 < 0 ? (int)-t0 : (int)t0));
+  sprintf(id_dest->str, "%%es:(%%edi)");
+#endif
+
+  print_asm_template2(movs);
 }
 
 make_EHelper(movzx) {

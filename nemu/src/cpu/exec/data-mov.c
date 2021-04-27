@@ -71,6 +71,16 @@ make_EHelper(movsx) {
   print_asm_template2(movsx);
 }
 
+make_EHelper(movsb) {
+	t0 = reg_l(R_ESI);
+	rtl_lm(&t0, &t0, 1);
+	rtl_sm(&reg_l(R_EDI), &t0, 1);
+	reg_l(R_ESI) += 1;
+	reg_l(R_EDI) += 1;
+	
+	print_asm_template2(movsb);
+} 
+
 make_EHelper(movzx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
   operand_write(id_dest, &id_src->val);

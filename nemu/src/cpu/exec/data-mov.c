@@ -76,7 +76,7 @@ make_EHelper(movsb){
   rtl_sm(&cpu.edi,&t0,1);
   cpu.esi+=1;
   cpu.edi+=1;
-  print_asm("movsb");
+  print_asm_template2(movsb);
 }
 
 make_EHelper(movzx) {

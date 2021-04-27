@@ -71,15 +71,13 @@ make_EHelper(movsx) {
   print_asm_template2(movsx);
 }
 
-make_EHelper(movsb) {
-	t0 = reg_l(R_ESI);
-	rtl_lm(&t0, &t0, 1);
-	rtl_sm(&reg_l(R_EDI), &t0, 1);
-	reg_l(R_ESI) += 1;
-	reg_l(R_EDI) += 1;
-	
-	print_asm_template2(movsb);
-} 
+make_EHelper(movsb){
+  rtl_lm(&t0,&cpu.esi,1);
+  rtl_sm(&cpu.edi,&t0,1);
+  cpu.esi+=1;
+  cpu.edi+=1;
+  print_asm("movsb");
+}
 
 make_EHelper(movzx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;

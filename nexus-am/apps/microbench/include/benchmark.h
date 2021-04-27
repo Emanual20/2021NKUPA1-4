@@ -53,6 +53,7 @@ extern "C" {
 
 #define BENCHMARK_LIST(def) \
   def(qsort, "qsort", QSORT_SM, QSORT_LG, "Quick sort") \
+/*
   def(queen, "queen", QUEEN_SM, QUEEN_LG, "Queen placement") \
   def(   bf,    "bf",    BF_SM,    BF_LG, "Brainf**k interpreter") \
   def(  fib,   "fib",   FIB_SM,   FIB_LG, "Fibonacci number") \
@@ -62,6 +63,7 @@ extern "C" {
   def( lzip,  "lzip",  LZIP_SM,  LZIP_LG, "Lzip compression") \
   def(ssort, "ssort", SSORT_SM, SSORT_LG, "Suffix sort") \
   def(  md5,   "md5",   MD5_SM,   MD5_LG, "MD5 digest") \
+*/
 
 // Each benchmark will run REPEAT times
 

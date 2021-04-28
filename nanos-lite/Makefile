@@ -1,6 +1,10 @@
 NAME = nanos-lite
 SRCS = $(shell find -L ./src/ -name "*.c" -o -name "*.cpp" -o -name "*.S")
 LIBS = klib
+export AM_HOME ?= /home/rexxar/PA2021_0308/ics2018/nexus-am
+export NEMU_HOME ?= /home/rexxar/PA2021_0308/ics2018/nemu
+export NAVY_HOME ?= /home/rexxar/PA2021_0308/ics2018/navy-apps
+
 include $(AM_HOME)/Makefile.app
 
 FSIMG_PATH = $(NAVY_HOME)/fsimg

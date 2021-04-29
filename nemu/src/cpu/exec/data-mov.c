@@ -57,9 +57,11 @@ make_EHelper(cltd) {
 
 make_EHelper(cwtl) {
   if (decoding.is_operand_size_16) {
-    rtl_shli(&cpu.eax, &cpu.eax, 24);
-    rtl_sari(&cpu.eax, &cpu.eax, 8);
-    rtl_shri(&cpu.eax, &cpu.eax, 16);
+    // rtl_shli(&cpu.eax, &cpu.eax, 24);
+    // rtl_sari(&cpu.eax, &cpu.eax, 8);
+    // rtl_shri(&cpu.eax, &cpu.eax, 16);
+    rtl_sext(&t0, &cpu.eax, 1);
+    cpu.eax = (cpu.eax & 0xffff0000) | (t0 & 0xffff);
   }
   else {
     rtl_sext(&cpu.eax, &cpu.eax, 2);

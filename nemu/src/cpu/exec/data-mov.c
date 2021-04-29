@@ -7,9 +7,7 @@ make_EHelper(mov) {
 
 make_EHelper(push) {
   rtl_sext(&t0,&id_dest->val,id_dest->width);
-  // printf("inpush1\n");
   rtl_push(&t0);
-  // printf("inpush2\n");
   print_asm_template1(push);
 }
 
@@ -41,11 +39,17 @@ make_EHelper(leave) {
 
 make_EHelper(cltd) {
   if (decoding.is_operand_size_16) {
-    rtl_sext(&t0, &cpu.eax, 2);
-    rtl_shri(&cpu.edx, &t0, 16);
+    // rtl_sext(&t0, &cpu.eax, 2);
+    // rtl_shri(&cpu.edx, &t0, 16);
+    rtl_msb(&t0, &cpu.eax, 2);
+    if(t0 == 1) cpu.edx = cpu.edx | 0xffff;
+    else cpu.edx = 0;
   }
   else {
-    rtl_sari(&cpu.edx, &cpu.eax, 31);
+    // rtl_sari(&cpu.edx, &cpu.eax, 31);
+    rtl_msb(&t0, &cpu.eax, 4);
+    if(t0 == 1) cpu.edx = cpu.edx | 0xffffffff;
+    else cpu.edx = 0;
   }
 
   print_asm(decoding.is_operand_size_16 ? "cwtl" : "cltd");

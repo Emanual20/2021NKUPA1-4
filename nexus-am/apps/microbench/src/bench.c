@@ -47,7 +47,7 @@ void run_once(Benchmark *b, Result *res) {
   current->run();      // run it
   bench_done(res);    // collect results
   // res->pass = current->validate();
-  res->pass = current->validate() | 0x1;
+  res->pass = current->validate();
 }
 
 unsigned long score(Benchmark *b, unsigned long tsc, unsigned long msec) {

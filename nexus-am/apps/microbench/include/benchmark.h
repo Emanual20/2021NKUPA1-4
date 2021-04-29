@@ -73,6 +73,7 @@ extern "C" {
   def(   bf,    "bf",    BF_SM,    BF_LG, "Brainf**k interpreter") \
   def(  fib,   "fib",   FIB_SM,   FIB_LG, "Fibonacci number") \
   def(sieve, "sieve", SIEVE_SM, SIEVE_LG, "Eratosthenes sieve") \
+  def( 15pz,  "15pz",  PZ15_SM,  PZ15_LG, "A* 15-puzzle search") \
   def(dinic, "dinic", DINIC_SM, DINIC_LG, "Dinic's maxflow algorithm") \
   def( lzip,  "lzip",  LZIP_SM,  LZIP_LG, "Lzip compression") \
   def(ssort, "ssort", SSORT_SM, SSORT_LG, "Suffix sort") \

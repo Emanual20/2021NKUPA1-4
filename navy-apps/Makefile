@@ -1,9 +1,6 @@
 include Makefile.check
 
 APPS = $(dir $(shell find apps tests -mindepth 2 -name "Makefile"))
-AM_HOME ?= /home/rexxar/PA2021_0308/ics2018/nexus-am
-NEMU_HOME ?= /home/rexxar/PA2021_0308/ics2018/nemu
-NAVY_HOME ?= /home/rexxar/PA2021_0308/ics2018/navy-apps
 
 .PHONY: fsimg $(APPS) $(LIBS) clean
 

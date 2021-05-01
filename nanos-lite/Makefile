@@ -10,7 +10,7 @@ include $(AM_HOME)/Makefile.app
 FSIMG_PATH = $(NAVY_HOME)/fsimg
 RAMDISK_FILE = build/ramdisk.img
 
-OBJCOPY_FLAG = -S --set-section-flags .bss=alloc,contents -O binary
+OBJCOPY_FLAG = -R .note.gnu.property -S --set-section-flags .bss=alloc,contents -O binary
 # OBJCOPY_FILE = $(NAVY_HOME)/tests/dummy/build/dummy-x86
 # 20210501 try this
 OBJCOPY_APP = $(NAVY_HOME)/tests/dummy

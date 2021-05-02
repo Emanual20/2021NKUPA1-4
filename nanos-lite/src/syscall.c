@@ -6,6 +6,20 @@ _RegSet* sys_none(_RegSet *r){
   return NULL;
 }
 
+_RegSet* sys_write(_RegSet *r){
+  int fd = SYSCALL_ARG2(r);
+  char* buf = (char*) SYSCALL_ARG3(r);
+  int len = SYSCALL_ARG4(r);
+
+  if(fd == 1 || fd == 2){
+    for(int i=0; i < len; i++){
+      _putc(buf[i]);
+    }
+    SYSCALL_ARG1(r) = SYSCALL_ARG4(r);
+  }
+  return NULL;
+}
+
 _RegSet* sys_exit(_RegSet *r){
   _halt(SYSCALL_ARG2(r));
   return NULL;
@@ -19,6 +33,10 @@ _RegSet* do_syscall(_RegSet *r) {
   switch (a[0]) {
     case SYS_none:{
       return sys_none(r);
+      break;
+    }
+    case SYS_write:{
+      return sys_write(r);
       break;
     }
     case SYS_exit:{

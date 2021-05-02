@@ -20,10 +20,10 @@ _RegSet* do_syscall(_RegSet *r) {
       return sys_none(r);
       break;
     }
-    case SYS_exit:{
-      return sys_exit(r);
-      break;
-    }
+    // case SYS_exit:{
+    //   return sys_exit(r);
+    //   break;
+    // }
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 

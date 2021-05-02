@@ -12,7 +12,7 @@ _RegSet* sys_write(_RegSet *r){
   int len = SYSCALL_ARG4(r);
 
   if(fd == 1 || fd == 2){
-    for(int i=0; i < len; i++){
+    for(int i = 0; i < len; i++){
       _putc(buf[i]);
     }
     SYSCALL_ARG1(r) = SYSCALL_ARG4(r);

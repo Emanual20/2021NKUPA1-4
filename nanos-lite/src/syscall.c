@@ -28,7 +28,7 @@ _RegSet* sys_exit(_RegSet *r){
 _RegSet* do_syscall(_RegSet *r) {
   uintptr_t a[4];
   a[0] = SYSCALL_ARG1(r);
-  printf("Now handling syscall ID = %d\n", a[0]);
+  // printf("Now handling syscall ID = %d\n", a[0]);
 
   switch (a[0]) {
     case SYS_none:{

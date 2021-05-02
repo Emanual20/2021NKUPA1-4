@@ -7,7 +7,7 @@ _RegSet* sys_none(_RegSet *r){
 }
 
 _RegSet* sys_exit(_RegSet *r){
-  _halt(SYSCALL_ARG1(r));
+  _halt(SYSCALL_ARG2(r));
   return NULL;
 }
 

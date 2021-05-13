@@ -36,7 +36,7 @@ void *_sbrk(intptr_t increment){
   intptr_t ori_brk = brk;
   intptr_t new_brk = ori_brk + increment;
   char a[]="**log**";
-  _write(66,a,sizeof(a));
+  write(66,a,sizeof(a));
   if(_syscall_(SYS_brk, new_brk, 0, 0) == 0){
     brk = new_brk;
     return (void*) ori_brk;

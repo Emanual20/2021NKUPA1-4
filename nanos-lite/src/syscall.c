@@ -25,6 +25,11 @@ _RegSet* sys_exit(_RegSet *r){
   return NULL;
 }
 
+_RegSet* sys_brk(_RegSet *r){
+  SYSCALL_ARG1(r) = 0;
+  return NULL;
+}
+
 _RegSet* do_syscall(_RegSet *r) {
   uintptr_t a[4];
   a[0] = SYSCALL_ARG1(r);
@@ -41,6 +46,10 @@ _RegSet* do_syscall(_RegSet *r) {
     }
     case SYS_exit:{
       return sys_exit(r);
+      break;
+    }
+    case SYS_brk:{
+      return sys_brk(r);
       break;
     }
     default: panic("Unhandled syscall ID = %d", a[0]);

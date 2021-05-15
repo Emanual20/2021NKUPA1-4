@@ -11,6 +11,7 @@ enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB, FD_EVENTS, FD_DISPINFO, FD_NORMAL};
 
 extern void ramdisk_read(void *buf, off_t offset, size_t len);
 extern void ramdisk_write(const void *buf, off_t offset, size_t len);
+extern void fb_write(const void *buf, off_t offset, size_t len);
 
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
@@ -27,6 +28,7 @@ static Finfo file_table[] __attribute__((used)) = {
 
 void init_fs() {
   // TODO: initialize the size of /dev/fb
+  file_table[FD_FB].size = _screen.height * _screen.width * 4;
 }
 
 int fs_open(const char* path, int flags, int mode){
@@ -77,13 +79,16 @@ ssize_t fs_write(int fd, const void* buf, size_t len){
   switch(fd){
     case FD_STDOUT:
     case FD_STDERR:{
+      // stdout stderr
       for(int i=0;i<len;i++){
         _putc(((char*)buf)[i]);
       }
       break;
     }
     case FD_FB:{
-      // TODO: maybe have bugs
+      // frame buffer
+      fb_write(buf, file_table[fd].open_offset, len);
+      file_table[fd].open_offset+=len;
       break;
     }
     default:{

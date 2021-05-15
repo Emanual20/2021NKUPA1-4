@@ -17,7 +17,6 @@ _RegSet* sys_write(_RegSet *r){
     }
     SYSCALL_ARG1(r) = SYSCALL_ARG4(r);
   }
-  _putc('t');
   return NULL;
 }
 

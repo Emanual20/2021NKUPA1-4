@@ -21,17 +21,18 @@ uintptr_t loader(_Protect *as, const char *filename) {
   int f_size = fs_filesz(fd);
 
   Log("Load %d bytes file, named %s, fd %d", f_size, filename, fd);
-  void* pa = DEFAULT_ENTRY;
-  void* va = DEFAULT_ENTRY;
-  while(f_size > 0){
-    pa = new_page();
-    _map(as, va, pa);
-    fs_read(fd, pa, PGSIZE);
+  // void* pa = DEFAULT_ENTRY;
+  // void* va = DEFAULT_ENTRY;
+  // while(f_size > 0){
+  //   pa = new_page();
+  //   _map(as, va, pa);
+  //   fs_read(fd, pa, PGSIZE);
 
-    va += PGSIZE;
-    f_size -= PGSIZE;
-    Log("f_size remaining:%d..",f_size);
-  }
+  //   va += PGSIZE;
+  //   f_size -= PGSIZE;
+  //   Log("f_size remaining:%d..",f_size);
+  // }
+  fs_read(fd, (void*)DEFAULT_ENTRY, f_size);
   fs_close(fd);
   return (uintptr_t)DEFAULT_ENTRY;
 }

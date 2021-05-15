@@ -12,7 +12,7 @@ uint8_t pmem[PMEM_SIZE];
 /* Memory accessing interfaces */
 
 uint32_t paddr_read(paddr_t addr, int len) {
-  if(addr>0x7900000)
+  if(addr>0x7d00000)
     printf("paddr:0x%x\n", addr);
   int map_NO = is_mmio(addr);
   if(map_NO == -1)

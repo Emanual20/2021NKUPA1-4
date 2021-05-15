@@ -65,13 +65,12 @@ ssize_t fs_read(int fd, void* buf, size_t len){
       break;
     }
     default:{
-      Log("Reading %s from %d..open_offset:%d,disk_offset:%d,len:%d,fd:%d",
+      Log("Reading %s from %d..open_offset:%d,disk_offset:%d,len:%d",
       file_table[fd].name,
       file_table[fd].disk_offset + file_table[fd].open_offset,
       file_table[fd].open_offset,
       file_table[fd].disk_offset,
-      len,
-      fd);
+      len);
       ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, len);
       file_table[fd].open_offset += len;
       Log("Read finish..");

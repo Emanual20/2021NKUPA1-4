@@ -13,7 +13,7 @@ extern uint8_t ramdisk_end;
 void ramdisk_read(void *buf, off_t offset, size_t len) {
   Log("offset:%d, len:%d, sum:%d",offset,len,offset+len);
   assert(offset + len <= RAMDISK_SIZE);
-  Log("1");
+  Log("%d", &ramdisk_start+offset);
   memcpy(buf, &ramdisk_start + offset, len);
   Log("2");
 }

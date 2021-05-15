@@ -15,6 +15,7 @@ void ramdisk_read(void *buf, off_t offset, size_t len) {
   assert(offset + len <= RAMDISK_SIZE);
   Log("1");
   memcpy(buf, &ramdisk_start + offset, len);
+  Log("2");
 }
 
 /* write `len' bytes starting from `buf' into the `offset' of ramdisk */

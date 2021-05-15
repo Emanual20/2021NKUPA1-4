@@ -130,5 +130,8 @@ off_t fs_lseek(int fd, off_t offset, int whence){
 }
 
 int fs_close(int fd){
+  Log("Closing %s with fd:%d..",
+    file_table[fd].name,
+    fd);
   return 0;
 }

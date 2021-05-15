@@ -46,6 +46,7 @@ size_t fs_filesz(int fd){
 
 ssize_t fs_read(int fd, void* buf, size_t len){
   ssize_t f_size = fs_filesz(fd);
+  Log("Reading..open_offset:%d",file_table[fd].open_offset);
   if(file_table[fd].open_offset + len > f_size){
     len = f_size - file_table[fd].open_offset;
   }

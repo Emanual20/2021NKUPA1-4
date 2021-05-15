@@ -135,6 +135,10 @@ off_t fs_lseek(int fd, off_t offset, int whence){
       ret = file_table[fd].open_offset;
       break;
     }
+    default:{
+      Log("undefined whence..");
+      assert(0);
+    }
   }
   return ret;
 }

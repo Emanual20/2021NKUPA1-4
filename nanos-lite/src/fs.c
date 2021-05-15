@@ -12,6 +12,7 @@ enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB, FD_EVENTS, FD_DISPINFO, FD_NORMAL};
 extern void ramdisk_read(void *buf, off_t offset, size_t len);
 extern void ramdisk_write(const void *buf, off_t offset, size_t len);
 extern void fb_write(const void *buf, off_t offset, size_t len);
+extern void dispinfo_read(void *buf, off_t offset, size_t len);
 
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
@@ -58,14 +59,18 @@ ssize_t fs_read(int fd, void* buf, size_t len){
       return 0;
       break;
     }
-    // TODO: maybe remain some bugs ..
+    case FD_DISPINFO:{
+      dispinfo_read(buf, file_table[fd].open_offset, len);
+      file_table[fd].open_offset += len;
+      break;
+    }
     default:{
-      Log("Reading %s from %d..open_offset:%d,disk_offset:%d,len:%d",
-      file_table[fd].name,
-      file_table[fd].disk_offset + file_table[fd].open_offset,
-      file_table[fd].open_offset,
-      file_table[fd].disk_offset,
-      len);
+      // Log("Reading %s from %d..open_offset:%d,disk_offset:%d,len:%d",
+      // file_table[fd].name,
+      // file_table[fd].disk_offset + file_table[fd].open_offset,
+      // file_table[fd].open_offset,
+      // file_table[fd].disk_offset,
+      // len);
       ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, len);
       file_table[fd].open_offset += len;
       break;
@@ -95,11 +100,11 @@ ssize_t fs_write(int fd, const void* buf, size_t len){
       if(file_table[fd].open_offset + len > f_size){
         len = f_size - file_table[fd].open_offset;
       }
-      Log("Writing %s..open_offset:%d,disk_offset:%d,len:%d",
-      file_table[fd].name,
-      file_table[fd].open_offset,
-      file_table[fd].disk_offset,
-      len);
+      // Log("Writing %s..open_offset:%d,disk_offset:%d,len:%d",
+      // file_table[fd].name,
+      // file_table[fd].open_offset,
+      // file_table[fd].disk_offset,
+      // len);
       ramdisk_write(buf, file_table[fd].disk_offset + file_table[fd].open_offset, len);
       file_table[fd].open_offset += len;
       break;

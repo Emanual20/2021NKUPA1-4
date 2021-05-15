@@ -9,6 +9,7 @@ static const char *keyname[256] __attribute__((used)) = {
 };
 
 size_t events_read(void *buf, size_t len) {
+  Log("should not reach here now..");
   return 0;
 }
 

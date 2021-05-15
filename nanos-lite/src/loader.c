@@ -18,7 +18,7 @@ uintptr_t loader(_Protect *as, const char *filename) {
   // return (uintptr_t)DEFAULT_ENTRY;
 
   int fd = fs_open(filename, 0, 0);
-  int f_size = fs_filesz(fd);
+  size_t f_size = fs_filesz(fd);
 
   Log("Load %d bytes file, named %s, fd %d", f_size, filename, fd);
   void* pa = DEFAULT_ENTRY;

@@ -13,6 +13,7 @@ extern void ramdisk_read(void *buf, off_t offset, size_t len);
 extern void ramdisk_write(const void *buf, off_t offset, size_t len);
 extern void fb_write(const void *buf, off_t offset, size_t len);
 extern void dispinfo_read(void *buf, off_t offset, size_t len);
+extern size_t events_read(void *buf, size_t len);
 
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
@@ -57,6 +58,10 @@ ssize_t fs_read(int fd, void* buf, size_t len){
     case FD_STDOUT:
     case FD_STDERR:{
       return 0;
+      break;
+    }
+    case FD_EVENTS:{
+      len = events_read(buf, len);
       break;
     }
     case FD_DISPINFO:{

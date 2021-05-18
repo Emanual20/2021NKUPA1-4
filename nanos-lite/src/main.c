@@ -30,7 +30,7 @@ int main() {
 
   init_fs();
 
-  uint32_t entry = loader(NULL, "/bin/events");
+  uint32_t entry = loader(NULL, "/bin/text");
   Log("finish loader in main..");
   ((void (*)(void))entry)();
 

@@ -32,6 +32,7 @@ _RegSet* schedule(_RegSet *prev) {
   current->tf = prev;
 
   count++;
+  Log("count = %d",count);
   if(count == 8){
     count = 0;
     current = &pcb[1];

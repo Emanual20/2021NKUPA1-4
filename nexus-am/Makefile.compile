@@ -31,7 +31,7 @@ CXXFLAGS += -std=c++11 -O2 -MMD -Wall -Werror -ggdb $(INCLUDES) -D$(ISA_DEF)
 ASFLAGS  +=                -MMD                     $(INCLUDES) -D$(ISA_DEF)
 
 ifeq ($(ISA), mips32)
-CFLAGS_COMMON = -fno-pic -static -fno-strict-aliasing -fno-builtin -fno-stack-protector -fno-delayed-branch -mno-abicalls -march=mips32 -mno-check-zero-division -EL -mno-llsc -mno-imadd -mno-mad -fcf-protection=none -mmanual-endbr
+CFLAGS_COMMON = -fno-pic -static -fno-strict-aliasing -fno-builtin -fno-stack-protector -fno-delayed-branch -mno-abicalls -march=mips32 -mno-check-zero-division -EL -mno-llsc -mno-imadd -mno-mad
 CFLAGS   += $(CFLAGS_COMMON)
 CXXFLAGS += $(CFLAGS_COMMON) -ffreestanding -fno-rtti -fno-exceptions
 ASFLAGS  += -march=mips32 -EL -mno-check-zero-division -O0 -mno-abicalls -fno-pic -fno-delayed-branch
@@ -39,19 +39,19 @@ endif
 
 ifeq ($(ISA), riscv32)
 # it seems that mstrict-align does not work?
-CFLAGS_COMMON = -fno-pic -static -mcmodel=medany -fno-delete-null-pointer-checks -mabi=ilp32 -march=rv32i -mstrict-align -fcf-protection=none -mmanual-endbr
+CFLAGS_COMMON = -fno-pic -static -mcmodel=medany -fno-delete-null-pointer-checks -mabi=ilp32 -march=rv32i -mstrict-align
 CFLAGS   += $(CFLAGS_COMMON)
 CXXFLAGS += $(CFLAGS_COMMON) -ffreestanding -fno-rtti -fno-exceptions
 endif
 
 ifeq ($(ISA), riscv64)
-CFLAGS_COMMON = -fno-pic -static -mcmodel=medany -fno-delete-null-pointer-checks -mabi=lp64 -march=rv64imac -fcf-protection=none -mmanual-endbr
+CFLAGS_COMMON = -fno-pic -static -mcmodel=medany -fno-delete-null-pointer-checks -mabi=lp64 -march=rv64imac
 CFLAGS   += $(CFLAGS_COMMON)
 CXXFLAGS += $(CFLAGS_COMMON) -ffreestanding -fno-rtti -fno-exceptions
 endif
 
 ifeq ($(ISA), x86)
-CFLAGS_COMMON = -m32 -fno-pic -fno-builtin -fno-stack-protector -fno-omit-frame-pointer -march=i386 -mstringop-strategy=unrolled_loop -fcf-protection=none -mmanual-endbr
+CFLAGS_COMMON = -m32 -fno-pic -fno-builtin -fno-stack-protector -fno-omit-frame-pointer -march=i386 -mstringop-strategy=unrolled_loop
 CFLAGS   += $(CFLAGS_COMMON)
 CXXFLAGS += $(CFLAGS_COMMON) -ffreestanding -fno-rtti -fno-exceptions
 ASFLAGS  += -m32

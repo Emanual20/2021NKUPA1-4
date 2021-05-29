@@ -37,5 +37,6 @@ _RegSet* schedule(_RegSet *prev) {
   // TODO: switch to the new address space
   // then return the new context
   _switch(&current->as);
+  Log("%x", current->tf);
   return current->tf;
 }

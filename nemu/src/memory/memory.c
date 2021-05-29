@@ -57,6 +57,7 @@ paddr_t page_translate(vaddr_t vaddr, bool flag){
 
     return REMOVE_OFFSET(pte.val) | OFFSET(vaddr);
   }
+  else assert(0);
 }
 
 uint32_t vaddr_read(vaddr_t vaddr, int len) {

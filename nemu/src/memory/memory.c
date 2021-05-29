@@ -31,8 +31,8 @@ void paddr_write(paddr_t addr, int len, uint32_t data) {
 
 #define PDX(va) (((uint32_t)(va) >> 22) & 0x03ff)
 #define PTX(va) (((uint32_t)(va) >> 12) & 0x03ff)
-#define OFFSET(va) (((uint32_t)(va) >> 0) & 0x03ff)
-#define REMOVE_OFFSET(pte) ((uint32_t)(pte) & 0xfffffc00) 
+#define OFFSET(va) (((uint32_t)(va) >> 0) & 0x0fff)
+#define REMOVE_OFFSET(pte) ((uint32_t)(pte) & 0xfffff000) 
 
 bool IfDataCrossBoundary(vaddr_t addr, int len){
   return ((addr + len - 1) & ~PAGE_MASK) != (addr & ~ PAGE_MASK);

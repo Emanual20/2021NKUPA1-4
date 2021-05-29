@@ -43,7 +43,7 @@ paddr_t page_translate(vaddr_t vaddr, bool flag){
   PDE *pgdir;
   PTE pte;
   PTE *ptdir;
-  if(cpu.cr0.protect_enable && cpu.cr0.paging){
+  if(cpu.cr0.paging){
     pgdir = (PDE*)(REMOVE_OFFSET(cpu.cr3.val));
     pde.val = paddr_read((paddr_t)&pgdir[PDX(vaddr)], 4);
     assert(pde.present);

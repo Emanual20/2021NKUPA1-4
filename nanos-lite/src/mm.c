@@ -24,4 +24,5 @@ void init_mm() {
   Log("free physical pages starting from %p", pf);
 
   _pte_init(new_page, free_page);
+  Log("finish pte_init..");
 }

@@ -14,6 +14,7 @@ static _RegSet* do_event(_Event e, _RegSet* r) {
       break;
     }
     case _EVENT_IRQ_TIME:{
+      Log("TIMER Working...!");
       return schedule(r);
       break;
     }

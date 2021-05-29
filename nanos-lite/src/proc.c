@@ -31,6 +31,7 @@ _RegSet* schedule(_RegSet *prev) {
   current->tf = prev;
 
   // always select pcb[0] as new process
+  Log("%x %x", current, &pcb[0]);
   current = &pcb[0];
 
   // TODO: switch to the new address space

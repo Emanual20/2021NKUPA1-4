@@ -66,6 +66,7 @@ void _switch(_Protect *p) {
 }
 
 void _map(_Protect *p, void *va, void *pa) {
+  // Note: 210529 modified
 	PDE *pde = &((PDE*)(p->ptr))[PDX(va)];
 	PTE *pgtab;
 	if (*pde & PTE_P) {

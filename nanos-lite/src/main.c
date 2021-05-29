@@ -35,6 +35,9 @@ int main() {
   // uint32_t entry = loader(NULL, "/bin/pal");
   // Log("finish loader in main..");
   // ((void (*)(void))entry)();
+  Log(
+    "what!"
+  );
   load_prog("/bin/dummy");
 
   panic("Should not reach here");

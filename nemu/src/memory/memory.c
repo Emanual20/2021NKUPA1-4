@@ -60,7 +60,6 @@ paddr_t page_translate(vaddr_t vaddr, bool flag){
   else{
     return vaddr;
   }
-  return vaddr;
 }
 
 uint32_t vaddr_read(vaddr_t vaddr, int len) {

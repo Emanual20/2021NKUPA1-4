@@ -65,7 +65,12 @@ paddr_t page_translate(vaddr_t vaddr, bool flag){
 
 uint32_t vaddr_read(vaddr_t vaddr, int len) {
   if(IfDataCrossBoundary(vaddr, len)){
-    assert(0);
+    uint32_t ret = 0;
+    for(int i=0; i<len; i++){
+      paddr_t paddr = page_translate(vaddr+i, false);
+      ret += paddr_read(paddr, 1) << (8 * i);
+    }
+    return ret;
   }
   else{
     paddr_t paddr = page_translate(vaddr, false);
@@ -75,7 +80,10 @@ uint32_t vaddr_read(vaddr_t vaddr, int len) {
 
 void vaddr_write(vaddr_t vaddr, int len, uint32_t data) {
   if(IfDataCrossBoundary(vaddr, len)){
-    assert(0);
+    for(int i=0; i<len; i++){
+      paddr_t paddr = page_translate(vaddr+i, true);
+      paddr_write(paddr, 1, data>>(8*i));
+    }
   }
   else{
     paddr_t paddr = page_translate(vaddr, true);

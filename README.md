@@ -1,17 +1,10 @@
 # ICS2017 Programming Assignment
 
-This project is the programming assignment of the class ICS(Introduction to Computer System) in Department of Computer Science and Technology, Nanjing University.
+2021NKUfall综合课程设计2-1，框架代码课程组实际上参考了NJU ics2017的代码，原指导书可参看[link](https://nju-projectn.github.io/ics-pa-gitbook/ics2017/)
 
-For the guide of this programming assignment,
-refer to http://nju-ics.gitbooks.io/ics2017-programming-assignment/content/
+## 任务阐述：
 
-To initialize, run
-```bash
-bash init.sh
-```
-
-The following subprojects/components are included. Some of them are not fully implemented.
-* [NEMU](https://github.com/NJU-ProjectN/nemu)
-* [Nexus-am](https://github.com/NJU-ProjectN/nexus-am)
-* [Nanos-lite](https://github.com/NJU-ProjectN/nanos-lite)
-* [Navy-apps](https://github.com/NJU-ProjectN/navy-apps)
+PA1 实现类似GDB调试工具，简易的表达式求值
+PA2 使用rtl指令，实现i386手册中基础指令
+PA3 权限管理，文件系统，系统调用
+PA4 分页，进程切换
